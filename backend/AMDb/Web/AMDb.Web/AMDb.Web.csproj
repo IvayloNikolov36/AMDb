@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AMDb.DataModels\AMDb.DataModels.csproj" />
+    <ProjectReference Include="..\..\AMDb.Data\AMDb.Data.csproj" />
+    <ProjectReference Include="..\..\AMDb.Services\AMDb.Services.csproj" />
+    <ProjectReference Include="..\AMDb.Web.Models\AMDb.Web.Models.csproj" />
+  </ItemGroup>
+
+
+</Project>
