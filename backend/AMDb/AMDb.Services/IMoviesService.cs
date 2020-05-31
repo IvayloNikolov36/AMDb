@@ -6,6 +6,6 @@
 
     public interface IMoviesService
     {
-        Task<int?> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl);
+        Task<int> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl);
     }
 }

@@ -19,6 +19,10 @@
 
         public DbSet<Movie> Movies { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<MovieActor> MoviesActors { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -40,6 +44,19 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<MovieActor>()
+                .HasKey(e => new { e.MovieId, e.ActorId, e.Role });
+
+            builder.Entity<MovieActor>()
+                .HasOne(e => e.Movie)
+                .WithMany(m => m.Actors)
+                .HasForeignKey(e => e.MovieId);
+
+            builder.Entity<MovieActor>()
+                .HasOne(e => e.Actor)
+                .WithMany(a => a.Movies)
+                .HasForeignKey(e => e.ActorId);
+
             base.OnModelCreating(builder);
         }
 

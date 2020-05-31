@@ -4,14 +4,16 @@ using AMDb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AMDb.Data.Migrations
 {
     [DbContext(typeof(AMDbContext))]
-    partial class AMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200530225558_Actor_MovieActor")]
+    partial class Actor_MovieActor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

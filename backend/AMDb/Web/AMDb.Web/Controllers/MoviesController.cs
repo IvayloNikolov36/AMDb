@@ -9,28 +9,32 @@
     public class MoviesController : ApiController
     {
         private readonly IMoviesService movies;
+        private readonly IMoviesActorsService moviesActors;
 
-        public MoviesController(IMoviesService movies)
+        public MoviesController(IMoviesService movies, IMoviesActorsService moviesActors)
         {
             this.movies = movies;
+            this.moviesActors = moviesActors;
         }
 
         [HttpPost("publish")]
         [Authorize]
-        public async Task<IActionResult> Publish([FromBody] MovieInputModel model)
+        public async Task<IActionResult> Publish([FromBody] MovieInputModel m)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(new { Errors = this.ModelState.Values });
             }
 
-            int? movieId = await this.movies.Publish(model.Title, model.Duration, model.ReleaseDate, model.Genre, model.ImageUrl);
-            if (movieId == null)
+            int movieId = await this.movies
+                .Publish(m.Title, m.Duration, m.ReleaseDate, m.Genre, m.ImageUrl);
+
+            if (m.Actors.Count > 0)
             {
-                return this.BadRequest(new { Message = "Not created!" });
+                await this.moviesActors.AddAsync(movieId, m.Actors);
             }
 
-            return this.Ok(movieId);
+            return this.Ok(new { Id = movieId });
         }
     }
 }

@@ -6,16 +6,13 @@
     using System;
     using System.Threading.Tasks;
 
-    public class MoviesService : IMoviesService
+    public class MoviesService : DataService, IMoviesService
     {
-        private readonly AMDbContext db;
-
-        public MoviesService(AMDbContext db)
+        public MoviesService(AMDbContext dbContext) : base(dbContext)
         {
-            this.db = db;
         }
 
-        public async Task<int?> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl)
+        public async Task<int> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl)
         {            
             var movie = new Movie
             {
@@ -26,8 +23,8 @@
                 ImageUrl = imageUrl
             };
 
-            await this.db.AddAsync(movie);
-            await this.db.SaveChangesAsync();
+            await this.DbContext.AddAsync(movie);
+            await this.DbContext.SaveChangesAsync();
 
             return movie.Id;
         }
