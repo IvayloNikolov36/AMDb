@@ -36,5 +36,24 @@
 
             return this.Ok(new { Id = movieId });
         }
+
+        [HttpGet("this-month")]
+        public async Task<IActionResult> ThisMonth()
+        {
+            var thisMonthMovies = await this.movies
+                .GetThisMonthMoviesAsync<MovieConciseViewModel>();
+
+            return this.Ok(thisMonthMovies);
+        }
+
+        [HttpGet("all")]
+        [Authorize]
+        public async Task<IActionResult> All(int page = 1)
+        {
+            var movies = await this.movies
+                .AllAsync<MovieListingViewModel>(page);
+
+            return this.Ok(movies);
+        }
     }
 }

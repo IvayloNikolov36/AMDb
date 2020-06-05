@@ -1,0 +1,15 @@
+mat-card {
+  max-width: 90%;
+  margin: 0.8em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  margin: 0.8em auto;
+  font-size: 1.2em;
+}
+
+.mat-title-text {
+  color: cornflowerblue;
+  font-weight: bold;
+}

@@ -1,0 +1,87 @@
+<mat-card>
+  <mat-card-title class="mat-title-text">Add Actor</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="addActorForm" (submit)="addActor()">
+      <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap=20>
+        <mat-form-field fxFlex=40>
+          <input matInput type="text" placeholder="Name" formControlName="name">
+          <mat-hint>Enter actor name.</mat-hint>
+          <mat-error *ngIf="f.name.touched && f.name.errors?.required">Name is required!</mat-error>
+          <mat-error *ngIf="f.name.errors?.minlength">
+            Name length must be at least {{f.name.errors.minlength.requiredLength}} characters!
+          </mat-error>
+          <mat-error *ngIf="f.name.errors?.maxlength">
+            Name length must be no more than {{f.name.errors.maxlength.requiredLength}} characters!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex=40>
+          <input matInput type="text" placeholder="Birth name" formControlName="birthName">
+          <mat-hint>Enter birth name.</mat-hint>
+          <mat-error *ngIf="f.birthName.touched && f.birthName.errors?.required">Birth name is required!</mat-error>
+          <mat-error *ngIf="f.birthName.errors?.minlength">
+            Birth Name length must be at least {{f.birthName.errors.minlength.requiredLength}} characters!
+          </mat-error>
+          <mat-error *ngIf="f.birthName.errors?.maxlength">
+            Birth Name must be no more than {{f.birthName.errors.maxlength.requiredLength}} characters!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap=20>
+        <mat-form-field fxFlex=40>
+          <input matInput type="text" placeholder="MM.dd.yyyy" formControlName="birthDate" />
+          <mat-hint>Enter birth Date date.</mat-hint>
+        </mat-form-field>
+        <mat-form-field fxFlex=40>
+          <input matInput type="text" placeholder="Birth Place" formControlName="birthPlace" />
+          <mat-hint>Enter Birth Place.</mat-hint>
+          <mat-error *ngIf="f.birthPlace.errors?.minlength">
+            Birth Place length must be at least {{f.birthPlace.errors.minlength.requiredLength}} characters!
+          </mat-error>
+          <mat-error *ngIf="f.birthPlace.errors?.maxlength">
+            Birth Place length must be no more than {{f.birthPlace.errors.maxlength.requiredLength}} characters!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap=20>
+        <mat-form-field fxFlex=20>
+          <input matInput type="number" placeholder="Height" formControlName="height" min="0.5" max="2.4">
+          <mat-hint>Enter height.</mat-hint>
+          <mat-error *ngIf="f.height.errors?.min">
+            Height must be greater or equal to {{f.height.errors.min.min}}!
+          </mat-error>
+          <mat-error *ngIf="f.height.errors?.max">
+            Height must be less or equal to {{f.height.errors.max.max}}!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex=60>
+          <input matInput type="text" placeholder="Image url" formControlName="imageUrl" />
+          <mat-hint>Enter actor image url.</mat-hint>
+          <mat-error *ngIf="f.imageUrl.touched && f.imageUrl.errors?.required">
+            Image url is required!
+          </mat-error>
+          <mat-error *ngIf="f.imageUrl.errors?.pattern">
+            Image url must start with 'http://' or 'https://'!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around none">
+        <mat-form-field fxFlex=80>
+          <textarea matInput type="text" formControlName="biography" rows="4"></textarea>
+          <mat-hint>Enter biography.</mat-hint>
+          <mat-error *ngIf="f.biography.touched && f.biography.errors?.required">Biography is required!</mat-error>
+          <mat-error *ngIf="f.biography.errors?.minlength">
+            Biography length must be at least {{f.biography.errors.minlength.requiredLength}} characters!
+          </mat-error>
+          <mat-error *ngIf="f.biography.errors?.maxlength">
+            Biography length must be no more than {{f.biography.errors.maxlength.requiredLength}} characters!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around none">
+        <button type="submit" mat-raised-button color="primary" [disabled]="addActorForm.invalid">
+          Add
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

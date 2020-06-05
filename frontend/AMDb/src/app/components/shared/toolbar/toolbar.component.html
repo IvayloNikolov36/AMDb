@@ -1,14 +1,14 @@
 <mat-toolbar color="primary">
   <div><a routerLink="/">AMDb</a></div>
-  <ul
-      fxFlex
-      fxLayout
-      fxLayoutAlign="flex-end"
-      fxLayoutGap="20px"
-      fxHide.xs
-      class="navigation-links">
-    <li><a routerLink="/login">Log In</a></li>
-    <li><a routerLink="/register">Sign Up</a></li>
-    <li><a *ngIf="isAuth" (click)="logout()" class="logout-link">Logout</a></li>
+  <ul fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="20px" fxHide.xs class="navigation-links">
+
+    <ng-template [ngIf]="!authService.isAuthenticated()" [ngIfElse]="logOut">
+      <li><a routerLink="/login">Log In</a></li>
+      <li><a routerLink="/register">Sign Up</a></li>
+    </ng-template>
+    <ng-template #logOut>
+      <li><a routerLink="/movies/add">+Movie</a></li>
+      <li><a (click)="logout()" class="logout-link">Logout</a></li>
+    </ng-template>
   </ul>
 </mat-toolbar>

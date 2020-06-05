@@ -7,6 +7,7 @@ import {
   MatInputModule,
   MatCheckboxModule,
   MatCardModule,
+  MatDividerModule,
 } from '@angular/material';
 
 @NgModule({
@@ -18,6 +19,7 @@ import {
     MatInputModule,
     MatCheckboxModule,
     MatCardModule,
+    MatDividerModule,
   ],
   exports: [
     MatButtonModule,
@@ -27,6 +29,7 @@ import {
     MatInputModule,
     MatCheckboxModule,
     MatCardModule,
+    MatDividerModule,
   ]
 })
 export class MaterialModule { }

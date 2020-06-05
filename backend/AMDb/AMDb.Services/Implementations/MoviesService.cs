@@ -3,13 +3,37 @@
     using AMDb.Data;
     using AMDb.DataModels;
     using AMDb.DataModels.Enums;
+    using AMDb.Services.Mapping;
+    using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class MoviesService : DataService, IMoviesService
     {
         public MoviesService(AMDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<T>> AllAsync<T>(int page)
+        {
+            return await this.DbContext.Movies.AsNoTracking()
+                .Skip((page - 1) * 5)
+                .Take(5)
+                .To<T>()
+                .ToListAsync();
+        }
+
+        public async Task<List<T>> GetThisMonthMoviesAsync<T>()
+        {
+            var today = DateTime.Today;
+            return await this.DbContext.Movies.AsNoTracking()
+                .Where(m => m.ReleaseDate.Value.Year == today.Year 
+                    && m.ReleaseDate.Value.Month == today.Month)
+                .OrderByDescending(m => m.CreatedOn)
+                .To<T>()
+                .ToListAsync();
         }
 
         public async Task<int> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl)

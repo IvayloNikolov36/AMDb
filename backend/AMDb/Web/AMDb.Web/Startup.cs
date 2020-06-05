@@ -1,20 +1,22 @@
-using AMDb.Data;
-using AMDb.DataModels;
-using AMDb.Web.Infrastructure.Extensions;
-using AMDb.Web.Infrastructure.JsonConverters;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
 namespace AMDb.Web
 {
+    using AMDb.Data;
+    using AMDb.DataModels;
+    using AMDb.Services.Mapping;
+    using AMDb.Web.Infrastructure.Extensions;
+    using AMDb.Web.Infrastructure.JsonConverters;
+    using AMDb.Web.Models.Movies;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -26,6 +28,9 @@ namespace AMDb.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperConfig
+                .RegisterMappings(typeof(MovieInputModel).Assembly);
+
             services.AddDbContext<AMDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

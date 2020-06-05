@@ -23,9 +23,18 @@
             }
 
             int actorId = await this.actors
-                .AddAsync(m.Name, m.BirthName, m.BirthDate, m.BirthPlace, m.Height, m.Biography);
+                .AddAsync(m.Name, m.BirthName, m.BirthDate, m.BirthPlace, m.Height, m.Biography, m.ImageUrl);
 
             return this.Ok(new { Id = actorId });
         }  
+
+        [HttpGet("born-today")]
+        public async Task<IActionResult> BornToday()
+        {
+            var todayBorn = await this.actors.BornToday<ActorConciseViewModel>();
+
+            return this.Ok(todayBorn);
+        }
+
     }
 }

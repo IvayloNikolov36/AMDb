@@ -1,3 +1,5 @@
+import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
+import { MoviesModule } from './components/movies/movies.module';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,13 +17,18 @@ import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.servi
 import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { ActorCardComponent } from './components/actors/actor-card/actor-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomeComponent,
+    MovieCardComponent,
+    ActorCardComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,21 @@
+<mat-divider></mat-divider>
+<mat-card>
+  <mat-card-title>This month Movies</mat-card-title>
+  <mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <app-movie-card *ngFor="let movie of thisMonthMovies$ | async" [movie]="movie">
+      </app-movie-card>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <div *ngIf="(bornTodayActors$ | async)?.length > 0">
+    <mat-card-title>Actors born today</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <app-actor-card *ngFor="let actor of bornTodayActors$ | async" [actor]="actor">
+        </app-actor-card>
+      </div>
+    </mat-card-content>
+  </div>
+</mat-card>

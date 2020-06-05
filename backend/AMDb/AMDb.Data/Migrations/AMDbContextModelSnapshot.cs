@@ -47,6 +47,9 @@ namespace AMDb.Data.Migrations
                     b.Property<float?>("Height")
                         .HasColumnType("real");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 

@@ -7,11 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  isAuth: boolean;
-  constructor(private authService: AuthService) { }
+  constructor(protected authService: AuthService) { }
 
   ngOnInit() {
-    this.isAuth = this.authService.isAuthenticated();
   }
 
   logout() {
