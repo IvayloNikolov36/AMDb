@@ -49,7 +49,7 @@
 
             builder.Entity<MovieActor>()
                 .HasOne(e => e.Movie)
-                .WithMany(m => m.Actors)
+                .WithMany(m => m.Cast)
                 .HasForeignKey(e => e.MovieId);
 
             builder.Entity<MovieActor>()

@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200526220400_Movie.cs" />
     <Compile Remove="Migrations\20200526220400_Movie.Designer.cs" />
+    <Compile Remove="Migrations\20200609003214_ActorRoleLength.cs" />
+    <Compile Remove="Migrations\20200609003214_ActorRoleLength.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

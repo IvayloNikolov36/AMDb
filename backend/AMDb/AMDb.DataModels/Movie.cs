@@ -10,7 +10,7 @@
     {
         public Movie()
         {
-            this.Actors = new HashSet<MovieActor>();
+            this.Cast = new HashSet<MovieActor>();
         }
 
         [Required]
@@ -24,10 +24,21 @@
         public Genre Genre { get; set; }
 
         [Required]
+        [StringLength(150, MinimumLength = 50)]
+        public string SummaryText { get; set; }
+
+        [Required]
+        [StringLength(600, MinimumLength = 200)]
+        public string Storyline { get; set; }
+
+        [Required]
         [Url]
         public string ImageUrl { get; set; }
 
-        public ICollection<MovieActor> Actors { get; set; }
+        [Url]
+        public string TrailerUrl { get; set; }
+
+        public ICollection<MovieActor> Cast { get; set; }
 
     }
 }

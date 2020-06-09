@@ -1,6 +1,7 @@
 ﻿namespace AMDb.Web.Models.Movies
 {
     using AMDb.DataModels.Enums;
+    using AMDb.Web.Models.MovieActors;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@
     {
         public MovieInputModel()
         {
-            this.Actors = new Dictionary<int, string>();
+            this.Actors = new List<MovieActorsInputModel>();
         }
 
         [Required]
@@ -23,9 +24,20 @@
         public Genre Genre { get; set; }
 
         [Required]
+        [StringLength(150, MinimumLength = 50)]
+        public string SummaryText { get; set; }
+
+        [Required]
+        [StringLength(600, MinimumLength = 200)]
+        public string Storyline { get; set; }
+
+        [Required]
         [Url]
         public string ImageUrl { get; set; }
 
-        public Dictionary<int, string> Actors { get; set; }
+        [Url]
+        public string TrailerUrl { get; set; }
+
+        public IList<MovieActorsInputModel> Actors { get; set; }
     }
 }

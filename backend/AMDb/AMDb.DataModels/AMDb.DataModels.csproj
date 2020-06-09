@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="C:\Users\Ivaylo\Desktop\MovieActor.cs" Link="MovieActor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.0" />
   </ItemGroup>
 </Project>

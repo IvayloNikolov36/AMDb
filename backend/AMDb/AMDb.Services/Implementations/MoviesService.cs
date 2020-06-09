@@ -25,6 +25,14 @@
                 .ToListAsync();
         }
 
+        public async Task<T> DetailsAsync<T>(int id)
+        {
+            return await this.DbContext.Movies.AsNoTracking()
+                .Where(m => m.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<List<T>> GetThisMonthMoviesAsync<T>()
         {
             var today = DateTime.Today;
@@ -36,7 +44,8 @@
                 .ToListAsync();
         }
 
-        public async Task<int> Publish(string title, float duration, DateTime? releaseDate, Genre genre, string imageUrl)
+        public async Task<int> Publish(string title, float duration, DateTime? releaseDate, Genre genre,
+            string imageUrl, string trailerUrl, string storyline, string summaryText)
         {            
             var movie = new Movie
             {
@@ -44,7 +53,10 @@
                 Duration = duration,
                 Genre = genre,
                 ReleaseDate = releaseDate,
-                ImageUrl = imageUrl
+                ImageUrl = imageUrl,
+                TrailerUrl = trailerUrl,
+                Storyline = storyline,
+                SummaryText = summaryText
             };
 
             await this.DbContext.AddAsync(movie);
@@ -52,5 +64,6 @@
 
             return movie.Id;
         }
+
     }
 }

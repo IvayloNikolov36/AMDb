@@ -8,6 +8,7 @@
     <ProjectReference Include="..\AMDb.DataModels\AMDb.DataModels.csproj" />
     <ProjectReference Include="..\AMDb.Data\AMDb.Data.csproj" />
     <ProjectReference Include="..\AMDb.Services.Mapping\AMDb.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Web\AMDb.Web.Models\AMDb.Web.Models.csproj" />
   </ItemGroup>
 
 </Project>

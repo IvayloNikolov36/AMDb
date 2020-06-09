@@ -89,10 +89,23 @@ namespace AMDb.Data.Migrations
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Storyline")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(600)")
+                        .HasMaxLength(600);
+
+                    b.Property<string>("SummaryText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("TrailerUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -332,7 +345,7 @@ namespace AMDb.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("AMDb.DataModels.Movie", "Movie")
-                        .WithMany("Actors")
+                        .WithMany("Cast")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

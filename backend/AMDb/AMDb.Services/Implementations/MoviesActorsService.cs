@@ -2,6 +2,7 @@
 {
     using AMDb.Data;
     using AMDb.DataModels;
+    using AMDb.Web.Models.MovieActors;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,15 +12,15 @@
         {
         }
 
-        public async Task AddAsync(int movieId, Dictionary<int, string> actorsWithRoles)
+        public async Task AddAsync(int movieId, IList<MovieActorsInputModel> actorsWithRoles)
         {
             foreach (var item in actorsWithRoles)
             {
                 var movieActor = new MovieActor
                 {
                     MovieId = movieId,
-                    ActorId = item.Key,
-                    Role = item.Value
+                    ActorId = item.ActorId,
+                    Role = item.Role
                 };
 
                 await this.DbContext.AddAsync(movieActor);
